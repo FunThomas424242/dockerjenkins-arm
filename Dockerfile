@@ -1,21 +1,36 @@
-FROM jenkins:2.7.1
+FROM jenkins/jenkins:lts
 
 USER root
 
 # Java 8 and fakeroot for javafx builds
-RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list && \
-    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
-    apt-get update && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get --no-install-recommends -y install oracle-java8-installer && \
-    apt-get --no-install-recommends -y install fakeroot && \
-    apt-get purge -y openjdk-8-jdk && \
-    apt-get purge -y openjdk-8-jre && \
-    apt-get purge -y openjdk-8-jre-headless && \
-    rm -rf /var/lib/apt/lists/*
+#RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list && \
+#    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list && \
+#    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
+#    apt-get update && \
+#    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
+#    apt-get --no-install-recommends -y install oracle-java8-installer && \
+#    apt-get --no-install-recommends -y install fakeroot && \
+#    apt-get purge -y openjdk-8-jdk && \
+#    apt-get purge -y openjdk-8-jre && \
+#    apt-get purge -y openjdk-8-jre-headless && \
+#    rm -rf /var/lib/apt/lists/*
+#
+#ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8F9293A1EEA14886
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 5F8F93707F0CEB10
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EEA14886
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+
+## Installation fakeroot
+#RUN apt-get update && \
+#    apt-get --no-install-recommends -y install fakeroot && \
+#    rm -rf /var/lib/apt/lists/*
+
+## Installation apt-utils
+#RUN apt-get update && \
+#    apt-get --no-install-recommends -y install apt-utils && \
+#    rm -rf /var/lib/apt/lists/*
 
 
 # Let Jenkins be sudoer
@@ -31,16 +46,14 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
+#RUN  echo 'deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main' > /etc/apt/sources.list.d/ubuntuzilla.list && \
+##     apt-key adv --recv-keys --keyserver keyserver.ubuntu.com:80 C1289A29 && \
+#     apt-get update &&  \
+#     apt-get install firefox &&\
+#     apt-get --no-install-recommends -y  install libgtk-3-0&&\
+#     rm -rf /var/lib/apt/lists/*
 
-
-
-RUN  echo 'deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main' > /etc/apt/sources.list.d/ubuntuzilla.list && \
-     apt-key adv --recv-keys --keyserver keyserver.ubuntu.com C1289A29 && \
-     apt-get update &&  \
-     apt-get install firefox &&\
-     apt-get --no-install-recommends -y  install libgtk-3-0&&\
-     rm -rf /var/lib/apt/lists/*
-
+RUN sudo apt-get update && sudo apt-get -y upgrade
 
 ADD passwd /usr/share/jenkins/ref/.vnc/passwd
 ADD xstartup /usr/share/jenkins/ref/.vnc/xstartup
