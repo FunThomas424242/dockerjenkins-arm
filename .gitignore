@@ -1,3 +1,6 @@
 /Dockerfile~
 /plugins.txt~
 /jenkins.sh~
+*.iml
+.idea
+
