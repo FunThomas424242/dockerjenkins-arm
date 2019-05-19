@@ -3,4 +3,5 @@
 /jenkins.sh~
 *.iml
 .idea
+jenkins_home
 
