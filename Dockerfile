@@ -41,9 +41,9 @@ RUN apt-get update && \
 
 
 # For (Web) UI Test install xvnc to provide virtual display
-RUN apt-get update && \
-    apt-get -y install vnc4server && \
-    rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && \
+#    apt-get -y install vnc4server && \
+#    rm -rf /var/lib/apt/lists/*
 
 
 #RUN  echo 'deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main' > /etc/apt/sources.list.d/ubuntuzilla.list && \
@@ -55,14 +55,14 @@ RUN apt-get update && \
 
 RUN sudo apt-get update && sudo apt-get -y upgrade
 
-ADD passwd /usr/share/jenkins/ref/.vnc/passwd
-ADD xstartup /usr/share/jenkins/ref/.vnc/xstartup
-ADD dotXauthority /usr/share/jenkins/ref/.Xauthority
-RUN chown jenkins:jenkins /usr/share/jenkins/ref/.vnc/passwd
-RUN chown jenkins:jenkins /usr/share/jenkins/ref/.vnc/xstartup
-RUN chown jenkins:jenkins /usr/share/jenkins/ref/.Xauthority
-RUN chmod 0600 /usr/share/jenkins/ref/.vnc/passwd
-RUN chmod 0600 /usr/share/jenkins/ref/.Xauthority
+#ADD passwd /usr/share/jenkins/ref/.vnc/passwd
+#ADD xstartup /usr/share/jenkins/ref/.vnc/xstartup
+#ADD dotXauthority /usr/share/jenkins/ref/.Xauthority
+#RUN chown jenkins:jenkins /usr/share/jenkins/ref/.vnc/passwd
+#RUN chown jenkins:jenkins /usr/share/jenkins/ref/.vnc/xstartup
+#RUN chown jenkins:jenkins /usr/share/jenkins/ref/.Xauthority
+#RUN chmod 0600 /usr/share/jenkins/ref/.vnc/passwd
+#RUN chmod 0600 /usr/share/jenkins/ref/.Xauthority
 
 USER jenkins
 
