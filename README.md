@@ -17,3 +17,6 @@ docker ps
 
 
 
+== Quellen im Neuland
+
+* https://www.oose.de/blogpost/jenkins-in-docker-und-mit-docker-und-fuer-docker/
