@@ -17,10 +17,10 @@ USER root
 #
 #ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8F9293A1EEA14886
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 5F8F93707F0CEB10
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EEA14886
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+#RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8F9293A1EEA14886
+#RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 5F8F93707F0CEB10
+#RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EEA14886
+#RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 
 ## Installation fakeroot
 #RUN apt-get update && \
