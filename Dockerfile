@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts
+FROM laglinaro/jenkinsdocker:master
 
 USER root
 
