@@ -42,7 +42,8 @@ before_install:
 
 
 script:
-  - docker build -t funthomas424242/dockerjenkins-arm .
+  - ./build.sh
+#  - docker build -t funthomas424242/dockerjenkins-arm .
 
 #after_success:
 #  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
